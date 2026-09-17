@@ -443,7 +443,7 @@ export default function Home() {
         </section>
 
         {/* Contact */}
-        <section id="contact" data-scroll-section className="-mt-32 mb-32">
+        <section id="contact" data-scroll-section className="mt-24 mb-32 xl:-mt-32">
           <div
             data-scroll
             data-scroll-speed=".4"
