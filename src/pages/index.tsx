@@ -11,8 +11,8 @@ import {
   ExternalLink,
   Github,
   HardDrive,
-  Instagram,
   Mail,
+  MessageCircle,
   MonitorSmartphone,
   Wrench,
 } from "lucide-react";
@@ -524,21 +524,21 @@ export default function Home() {
                 <ArrowUpRight className="text-muted-foreground transition-transform group-hover:-translate-y-1 group-hover:translate-x-1" size={20} />
               </Link>
               <Link
-                href="https://www.instagram.com/k_spy4/"
+                href="https://line.me/ti/p/qYYgQSYigx"
                 target="_blank"
                 rel="noreferrer"
-                className="group flex items-center justify-between rounded-xl border border-fuchsia-500/30 bg-fuchsia-500/[8%] p-5 text-left transition duration-300 hover:-translate-y-1 hover:bg-fuchsia-500/[14%]"
+                className="group flex items-center justify-between rounded-xl border border-emerald-500/30 bg-emerald-500/[8%] p-5 text-left transition duration-300 hover:-translate-y-1 hover:bg-emerald-500/[14%]"
               >
                 <span className="flex items-center gap-4">
                   <span className="flex h-12 w-12 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-primary">
-                    <Instagram size={22} />
+                    <MessageCircle size={22} />
                   </span>
                   <span>
                     <span className="block text-xs uppercase tracking-[0.2em] text-muted-foreground">
-                      Instagram
+                      LINE
                     </span>
                     <span className="mt-1 block font-medium text-foreground">
-                      @k_spy4
+                      LINE
                     </span>
                   </span>
                 </span>
