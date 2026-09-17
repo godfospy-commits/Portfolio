@@ -7,6 +7,7 @@ import Footer from "@/components/Footer";
 import { useRouter } from "next/router";
 import Preloader from "@/components/Preloader";
 import styles from "@/styles/Container.module.css";
+import { portfolioData } from "@/data/portfolio";
 
 type IconProps = {
   ["data-hide"]: boolean;
@@ -40,7 +41,6 @@ const navLinks = [
   { href: "#home", text: "Home" },
   { href: "#about", text: "About" },
   { href: "#projects", text: "Projects" },
-  { href: "#services", text: "Services" },
   { href: "#contact", text: "Contact" },
 ];
 
@@ -83,8 +83,8 @@ export default function Container(props: ContainerProps) {
   const { children, ...customMeta } = props;
   const router = useRouter();
   const meta = {
-    title: "Wendo",
-    description: `Full-stack website developer and TypeScript enthusiast.`,
+    title: `${portfolioData.personal.name} | Developer Portfolio`,
+    description: portfolioData.personal.tagline,
     image: "/assets/logo.webp",
     type: "website",
     ...customMeta,
@@ -128,17 +128,18 @@ export default function Container(props: ContainerProps) {
           href={`https://www.wendoj.codes${router.asPath}`}
         />
         <meta property="og:type" content={meta.type} />
-        <meta property="og:site_name" content="WendoJ" />
+        <meta property="og:site_name" content={portfolioData.personal.name} />
         <meta property="og:description" content={meta.description} />
         <meta property="og:title" content={meta.title} />
         <meta property="og:image" content={meta.image} />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:site" content="WendoJ" />
+        <meta name="twitter:site" content={portfolioData.personal.name} />
         <meta name="twitter:title" content={meta.title} />
         <meta name="twitter:description" content={meta.description} />
         <meta name="twitter:image" content={meta.image} />
         <link rel="manifest" href="/manifest.json" />
-        <link rel="apple-touch-icon" href="/icon-192x192.png" />
+        <link rel="icon" href="/assets/icon-192x192.png" type="image/png" />
+        <link rel="apple-touch-icon" href="/assets/icon-192x192.png" />
       </Head>
       <nav
         className={cn(
@@ -164,7 +165,7 @@ export default function Container(props: ContainerProps) {
           </button>
         </div>
         <Link href="/">
-          <span className="text-lg font-semibold">wendo</span>
+          <span className="text-lg font-semibold lowercase">{portfolioData.personal.name}</span>
         </Link>
 
         {/* Desktop menu */}

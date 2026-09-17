@@ -2,15 +2,14 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { useState, useEffect } from "react";
 import { MailIcon } from "lucide-react";
+import { portfolioData } from "@/data/portfolio";
 
 export default function Footer() {
-  // get the current time in UTC+1 time zone
   const [time, setTime] = useState<string>("");
 
   useEffect(() => {
     const interval = setInterval(() => {
       const date = new Date();
-      date.setHours(date.getHours());
       setTime(
         date.toLocaleTimeString("en-US", {
           hour12: true,
@@ -24,33 +23,33 @@ export default function Footer() {
 
   return (
     <footer className="w-full bg-gradient-to-t from-primary/[1%] to-transparent">
-      <div className="container mx-auto flex flex-row items-center justify-between py-6">
+      <div className="container mx-auto flex flex-row items-center justify-between pt-6 pb-10">
         <span className="flex flex-row items-center space-x-4">
           <p className="text-xs text-muted-foreground">
             Made with ❤️ by{" "}
             <Link
-              href="https://github.com/wendoj"
+              href={portfolioData.personal.githubUrl}
               target="_blank"
               passHref
               className="text-foreground transition hover:text-primary"
             >
-              wendoj
+              {portfolioData.personal.name}
             </Link>
           </p>
           <hr className="hidden h-6 border-l border-muted md:flex" />
           <span className="flex hidden flex-row items-center space-x-2 md:flex">
             <p className="text-xs text-muted-foreground">Local time:</p>
-            <p className="text-sm font-semibold">{time} UTC+1</p>
+            <p className="text-sm font-semibold">{time} {portfolioData.personal.timeZone}</p>
           </span>
         </span>
         <Link
-          href="mailto:wendoj@proton.me"
+          href={`mailto:${portfolioData.personal.email}`}
           passHref
           className="text-xs text-muted-foreground hover:text-foreground"
         >
           <Button variant={"outline"}>
             <MailIcon className="h-4 w-4 md:mr-2" />
-            <span className="hidden md:flex">wendoj@proton.me</span>
+            <span className="hidden md:flex">{portfolioData.personal.email}</span>
           </Button>
         </Link>
       </div>

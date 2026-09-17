@@ -1,19 +1,24 @@
 import Container from "@/components/Container";
-import { useEffect, useRef, Suspense, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import styles from "@/styles/Home.module.css";
 import { Button } from "@/components/ui/button";
 import {
-  ChevronRight,
+  ArrowUpRight,
+  Box,
+  Bot,
   Code2,
-  Frame,
-  SearchCheck,
-  Eye,
+  Cpu,
+  ExternalLink,
+  Github,
+  HardDrive,
+  Instagram,
+  Mail,
   MonitorSmartphone,
+  Wrench,
 } from "lucide-react";
 import { TriangleDownIcon } from "@radix-ui/react-icons";
-import Spline from "@splinetool/react-spline";
 import Link from "next/link";
-import { cn, scrollTo } from "@/lib/utils";
+import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
@@ -25,87 +30,16 @@ import {
   type CarouselApi,
 } from "@/components/ui/carousel";
 import VanillaTilt from "vanilla-tilt";
-import { motion } from "framer-motion";
 
-const aboutStats = [
-  { label: "Years of experience", value: "3+" },
-  { label: "Technologies mastered", value: "5+" },
-  { label: "Companies worked with", value: "15+" },
-];
-
-const projects = [
-  {
-    title: "Unqueue",
-    description: "E-commerce platform for selling digital products",
-    image: "/assets/unqueue.webm",
-    href: "https://unqueue.shop/",
-  },
-  {
-    title: "InfiniteVPS",
-    description: "High performance VPS hosting solution",
-    image: "/assets/infinitevps.webm",
-    href: "#",
-  },
-  {
-    title: "TranslateBot",
-    description: "Powerful Multilingual Translation Bot for Discord",
-    image: "/assets/translate_bot.webm",
-    href: "https://translatebot.app/",
-  },
-  {
-    title: "Wrona",
-    description: "Robotics-focused technology company",
-    image: "/assets/wrona.jpeg",
-    href: "https://www.wrona.com/",
-  },
-  {
-    title: "This website",
-    description: "My personal website",
-    image: "/assets/portfolio.webm",
-    href: "https://github.com/wendoj/portfolio",
-  },
-];
-
-const services = [
-  {
-    service: "Frontend Development",
-    description:
-      "Creating stellar user interfaces and web experiences using the latest technologies.",
-    icon: Code2,
-  },
-  {
-    service: "UX Design",
-    description:
-      "Building intuitive, user-centric designs that drive engagement and conversion.",
-    icon: Frame,
-  },
-  {
-    service: "SEO Optimization",
-    description:
-      "Enhancing your website's visibility in search engines for increased organic traffic.",
-    icon: SearchCheck,
-  },
-  {
-    service: "Responsive Design",
-    description:
-      "Designing websites that look and perform equally well on all devices and screen sizes.",
-    icon: MonitorSmartphone,
-  },
-  {
-    service: "Backend Development",
-    description:
-      "Developing robust, scalable server-side logic for a wide range of web applications.",
-    icon: Eye,
-  },
-];
+import { portfolioData } from "@/data/portfolio";
 
 export default function Home() {
+  const { personal, stats, projects } = portfolioData;
   const refScrollContainer = useRef(null);
   const [isScrolled, setIsScrolled] = useState<boolean>(false);
-  const [carouselApi, setCarouselApi] = useState<CarouselApi | null>(null);
-  const [current, setCurrent] = useState<number>(0);
-  const [count, setCount] = useState<number>(0);
-
+  const [certCarouselApi, setCertCarouselApi] = useState<CarouselApi | null>(null);
+  const [certCurrent, setCertCurrent] = useState<number>(1);
+  const [certCount, setCertCount] = useState<number>(0);
   // handle scroll
   useEffect(() => {
     const sections = document.querySelectorAll("section");
@@ -149,28 +83,47 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    if (!carouselApi) return;
+    if (!certCarouselApi) return;
 
-    setCount(carouselApi.scrollSnapList().length);
-    setCurrent(carouselApi.selectedScrollSnap() + 1);
+    setCertCount(certCarouselApi.scrollSnapList().length);
+    setCertCurrent(certCarouselApi.selectedScrollSnap() + 1);
 
-    carouselApi.on("select", () => {
-      setCurrent(carouselApi.selectedScrollSnap() + 1);
-    });
-  }, [carouselApi]);
+    const handleSelect = () => {
+      setCertCurrent(certCarouselApi.selectedScrollSnap() + 1);
+    };
+
+    certCarouselApi.on("select", handleSelect);
+    return () => {
+      certCarouselApi.off("select", handleSelect);
+    };
+  }, [certCarouselApi]);
 
   // card hover effect
   useEffect(() => {
-    const tilt: HTMLElement[] = Array.from(document.querySelectorAll("#tilt"));
+    const tilt: HTMLElement[] = Array.from(
+      document.querySelectorAll(".tilt-card"),
+    );
+
+    if (tilt.length === 0) return;
+
     VanillaTilt.init(tilt, {
       speed: 300,
       glare: true,
       "max-glare": 0.1,
       gyroscope: true,
       perspective: 900,
-      scale: 0.9,
+      scale: 1.02,
     });
-  }, []);
+
+    return () => {
+      tilt.forEach((card) => {
+        const tiltCard = card as HTMLElement & {
+          vanillaTilt?: { destroy: () => void };
+        };
+        tiltCard.vanillaTilt?.destroy();
+      });
+    };
+  }, [certCarouselApi]);
 
   return (
     <Container>
@@ -184,16 +137,6 @@ export default function Home() {
           className="mt-40 flex w-full flex-col items-center xl:mt-0 xl:min-h-screen xl:flex-row xl:justify-between"
         >
           <div className={styles.intro}>
-            <div
-              data-scroll
-              data-scroll-direction="horizontal"
-              data-scroll-speed=".09"
-              className="flex flex-row items-center space-x-1.5"
-            >
-              <span className={styles.pill}>next.js</span>
-              <span className={styles.pill}>tailwindcss</span>
-              <span className={styles.pill}>typescript</span>
-            </div>
             <div>
               <h1
                 data-scroll
@@ -202,11 +145,11 @@ export default function Home() {
                 data-scroll-direction="horizontal"
               >
                 <span className="text-6xl tracking-tighter text-foreground 2xl:text-8xl">
-                  Hello, I&apos;m
+                  {personal.greeting}
                   <br />
                 </span>
                 <span className="clash-grotesk text-gradient text-6xl 2xl:text-8xl">
-                  WendoJ.
+                  {personal.headline}
                 </span>
               </h1>
               <p
@@ -215,29 +158,9 @@ export default function Home() {
                 data-scroll-speed=".06"
                 className="mt-1 max-w-lg tracking-tight text-muted-foreground 2xl:text-xl"
               >
-                An experienced full-stack website developer with a passion for
-                crafting unique digital experiences.
+                {personal.tagline}
               </p>
             </div>
-            <span
-              data-scroll
-              data-scroll-enable-touch-speed
-              data-scroll-speed=".06"
-              className="flex flex-row items-center space-x-1.5 pt-6"
-            >
-              <Link href="mailto:wendoj@proton.me" passHref>
-                <Button>
-                  Get in touch <ChevronRight className="ml-1 h-4 w-4" />
-                </Button>
-              </Link>
-              <Button
-                variant="outline"
-                onClick={() => scrollTo(document.querySelector("#about"))}
-              >
-                Learn more
-              </Button>
-            </span>
-
             <div
               className={cn(
                 styles.scroll,
@@ -248,15 +171,35 @@ export default function Home() {
               <TriangleDownIcon className="mt-1 animate-bounce" />
             </div>
           </div>
-          <div
-            data-scroll
-            data-scroll-speed="-.01"
-            id={styles["canvas-container"]}
-            className="mt-14 h-full w-full xl:mt-0"
-          >
-            <Suspense fallback={<span>Loading...</span>}>
-              <Spline scene="/assets/scene.splinecode" />
-            </Suspense>
+          <div className="mt-14 w-full max-w-2xl overflow-hidden rounded-2xl border border-primary/30 bg-[#030711]/95 shadow-[0_0_45px_rgba(59,130,246,0.12)] xl:mt-0">
+            <div className="flex items-center gap-2 border-b border-white/10 px-5 py-4 font-mono text-xs text-slate-500">
+              <span className="h-3 w-3 rounded-full bg-red-500" />
+              <span className="h-3 w-3 rounded-full bg-yellow-400" />
+              <span className="h-3 w-3 rounded-full bg-green-500" />
+              <span className="ml-3">terminal - bash</span>
+            </div>
+            <div className="space-y-4 px-5 py-6 font-mono text-sm leading-relaxed sm:px-8 sm:py-8 sm:text-base">
+              <p>
+                <span className="text-sky-400">~$</span>{" "}
+                <span className="text-slate-200">whoami</span>
+              </p>
+              <p className="text-emerald-400">kulphattnon @ engineering-student</p>
+              <p>
+                <span className="text-sky-400">~$</span>{" "}
+                <span className="text-slate-200">cat focus.txt</span>
+              </p>
+              <p className="text-emerald-400">
+                Robot &amp; Automation · PLC · Arduino · Python · Solidwork
+              </p>
+              <p>
+                <span className="text-sky-400">~$</span>{" "}
+                <span className="text-slate-200">status --check</span>
+              </p>
+              <p className="text-emerald-400">✓ Open to opportunities</p>
+              <p className="text-sky-400">
+                ~$ <span className="inline-block h-5 w-2 animate-pulse bg-sky-400 align-middle" />
+              </p>
+            </div>
           </div>
         </section>
 
@@ -266,25 +209,35 @@ export default function Home() {
             data-scroll
             data-scroll-speed=".4"
             data-scroll-position="top"
-            className="my-14 flex max-w-6xl flex-col justify-start space-y-10"
+            className="mt-14 mb-0 flex max-w-6xl flex-col justify-start space-y-10"
           >
-            <h2 className="py-16  pb-2 text-3xl font-light leading-normal tracking-tighter text-foreground xl:text-[40px]">
-              I&apos;m an experienced full-stack developer proficient in{" "}
-              <Link
-                href="https://create.t3.gg/"
-                target="_blank"
-                className="underline"
-              >
-                TypeScript, Tailwind, and Next.js
-              </Link>{" "}
-              since 2021. My experience spans from startups to mid-sized
-              companies, where I&apos;ve been instrumental in the entire product
-              design process; from ideation and wireframing, through
-              prototyping, to the delivery of the final product, all while
-              efficiently collaborating with cross-functional teams.
-            </h2>
+            <div className="relative overflow-hidden border border-primary/20 bg-background/40 px-6 py-12 sm:px-10 xl:px-16 xl:py-20">
+              <span className="clash-grotesk text-sm font-semibold tracking-[0.2em] text-primary">
+                // ABOUT_ME
+              </span>
+              <h2 className="mt-5 text-5xl font-semibold tracking-tight text-foreground sm:text-6xl xl:text-8xl">
+                WHO <span className="text-gradient">I AM</span>
+              </h2>
+              <div className="mt-5 h-0.5 w-12 bg-primary" />
+              <p className="mt-8 max-w-none text-base font-light leading-relaxed tracking-tight text-muted-foreground md:pr-56 lg:text-lg xl:text-lg">
+                {personal.aboutHeadline}
+              </p>
+              <div className="relative mx-auto mt-12 h-[220px] w-[220px] md:absolute md:right-8 md:top-12 md:mx-0 md:mt-0">
+                <div className="absolute inset-0 rounded-full border-2 border-primary/80 bg-gradient-to-br from-primary/20 via-background to-secondary/20 p-1 shadow-[0_0_30px_rgba(121,128,254,0.25)]">
+                  <div className="relative h-full w-full overflow-hidden rounded-full border border-primary/20 bg-background">
+                    <Image
+                      src="/assets/IMG_4771.jpg"
+                      alt="Kulphattnon Charoenwut"
+                      fill
+                      sizes="220px"
+                      className="object-cover"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
             <div className="grid grid-cols-2 gap-8 xl:grid-cols-3">
-              {aboutStats.map((stat) => (
+              {stats.map((stat) => (
                 <div
                   key={stat.label}
                   className="flex flex-col items-center text-center xl:items-start xl:text-start"
@@ -318,139 +271,289 @@ export default function Home() {
               />
             </div>
           </div>
-          <div data-scroll data-scroll-speed=".4" className="my-64">
+          <div data-scroll data-scroll-speed=".4" className="-mt-56 mb-0">
+            <div className="mb-12">
+              <span className="text-gradient clash-grotesk text-sm font-semibold tracking-[0.2em]">
+                // CERTIFICATES
+              </span>
+              <h2 className="mt-5 text-4xl font-semibold tracking-tight xl:text-6xl">
+                Certificates
+              </h2>
+              <div className="mt-5 h-0.5 w-12 bg-primary" />
+              <p className="mt-4 text-base tracking-tight text-muted-foreground xl:text-lg">
+                ใบเกียรติบัตรและใบรับรองที่ได้รับจากการเรียนรู้และการฝึกอบรม
+              </p>
+              <div className="mt-10">
+                <Carousel setApi={setCertCarouselApi} className="w-full">
+                  <CarouselContent>
+                    {[
+                      {
+                        title: "AI TECH STARTUP",
+                        image: "/certificates/cert-system.png",
+                        href: "/certificates/ระบบจัดการการอบรม.pdf",
+                      },
+                      {
+                        title: "การควบคุมหุ่นยนต์อุตสาหกรรมสำหรับการจับชิ้นงาน",
+                        image: "/certificates/cert-robot.png",
+                        href: "/certificates/การควบคุมหุ่นยนต์อุตสาหกรรมสำหรับการจับชิ้นงาน.pdf",
+                      },
+                      {
+                        title: "หลักสูตร PLC ระดับ ๑",
+                        image: "/certificates/cert-plc.png",
+                        href: "/certificates/หลักสูตร PLC ระดับ ๑.pdf",
+                      },
+                      {
+                        title: "Python Essentials 1",
+                        image: "/certificates/PythonEssentials1-preview.png",
+                        href: "/certificates/PythonEssentials1.pdf",
+                      },
+                      {
+                        title: "Fortinet Certified",
+                        image: "/certificates/FERTINET.png",
+                        href: "/certificates/FERTINET.png",
+                      },
+                    ].map((certificate) => (
+                      <CarouselItem key={certificate.title} className="md:basis-1/2">
+                        <Card className="tilt-card overflow-hidden">
+                          <CardHeader className="p-0">
+                            <Link href={certificate.href} target="_blank">
+                              {certificate.image ? (
+                                <Image
+                                  src={certificate.image}
+                                  alt={certificate.title}
+                                  width={600}
+                                  height={300}
+                                  quality={100}
+                                  className="aspect-video h-full w-full bg-primary object-cover transition duration-300 hover:scale-105"
+                                />
+                              ) : (
+                                <iframe
+                                  src={`${certificate.href}#toolbar=0&navpanes=0&scrollbar=0`}
+                                  title={certificate.title}
+                                  className="h-[300px] w-full bg-white"
+                                />
+                              )}
+                            </Link>
+                          </CardHeader>
+                          <CardContent>
+                            <CardTitle className="p-4 text-base font-normal tracking-tight">
+                              {certificate.title}
+                            </CardTitle>
+                          </CardContent>
+                        </Card>
+                      </CarouselItem>
+                    ))}
+                  </CarouselContent>
+                  <CarouselPrevious />
+                  <CarouselNext />
+                </Carousel>
+                <div className="py-2 text-center text-sm text-muted-foreground">
+                  <span className="font-semibold">
+                    {certCurrent} / {certCount}
+                  </span>{" "}
+                  certificates
+                </div>
+              </div>
+            </div>
+            <div className="mb-24">
+              <span className="text-gradient clash-grotesk text-sm font-semibold tracking-[0.2em]">
+                // TECHNICAL_SKILLS
+              </span>
+              <h2 className="mt-5 text-4xl font-semibold tracking-tight xl:text-6xl">
+                Technical <span className="text-gradient">Skills</span>
+              </h2>
+              <div className="mt-5 h-0.5 w-12 bg-primary" />
+              <div className="mt-12 rounded-2xl border border-white/10 bg-white/[3%] p-5 sm:p-8">
+                <div className="flex items-center justify-between rounded-xl border border-cyan-400/20 bg-cyan-500/10 px-5 py-4">
+                  <span className="flex items-center gap-3 font-semibold text-foreground">
+                    <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-cyan-400/10 text-cyan-300">
+                      <Wrench size={19} />
+                    </span>
+                    Tools
+                  </span>
+                  <span className="text-sm text-muted-foreground">8 skills</span>
+                </div>
+                <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+                  {[
+                    { name: "CX Program", Icon: Code2 },
+                    { name: "GX Works 3", Icon: Cpu },
+                    { name: "ROBO DK", Icon: Bot },
+                    { name: "Arduino IDE", Icon: Cpu },
+                    { name: "Antigravity", Icon: Box },
+                    { name: "VS Code", Icon: Code2 },
+                    { name: "Android Studio", Icon: MonitorSmartphone },
+                    { name: "SolidWorks 2019", Icon: Wrench },
+                  ].map(({ name, Icon }) => (
+                    <div
+                      key={name}
+                      className="group flex min-h-28 flex-col items-center justify-center rounded-xl border border-white/10 bg-background/60 p-4 text-center transition duration-300 hover:-translate-y-1 hover:border-primary/50 hover:bg-primary/10"
+                    >
+                      <Icon className="mb-3 text-primary transition-transform group-hover:scale-110" size={27} />
+                      <span className="text-sm font-medium text-foreground">
+                        {name}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
             <span className="text-gradient clash-grotesk text-sm font-semibold tracking-tighter">
               ✨ Projects
             </span>
             <h2 className="mt-3 text-4xl font-semibold tracking-tight tracking-tighter xl:text-6xl">
-              Streamlined digital experiences.
+              Projects
             </h2>
             <p className="mt-1.5 text-base tracking-tight text-muted-foreground xl:text-lg">
-              I&apos;ve worked on a variety of projects, from small websites to
-              large-scale web applications. Here are some of my favorites:
+              รวมโปรเจคที่ทำและการออกแบบชิ้นงาน
             </p>
 
-            {/* Carousel */}
-            <div className="mt-14">
-              <Carousel setApi={setCarouselApi} className="w-full">
-                <CarouselContent>
-                  {projects.map((project) => (
-                    <CarouselItem key={project.title} className="md:basis-1/2">
-                      <Card id="tilt">
-                        <CardHeader className="p-0">
-                          <Link href={project.href} target="_blank" passHref>
-                            {project.image.endsWith(".webm") ? (
-                              <video
-                                src={project.image}
-                                autoPlay
-                                loop
-                                muted
-                                className="aspect-video h-full w-full rounded-t-md bg-primary object-cover"
-                              />
-                            ) : (
-                              <Image
-                                src={project.image}
-                                alt={project.title}
-                                width={600}
-                                height={300}
-                                quality={100}
-                                className="aspect-video h-full w-full rounded-t-md bg-primary object-cover"
-                              />
-                            )}
-                          </Link>
-                        </CardHeader>
-                        <CardContent className="absolute bottom-0 w-full bg-background/50 backdrop-blur">
-                          <CardTitle className="border-t border-white/5 p-4 text-base font-normal tracking-tighter">
-                            {project.description}
-                          </CardTitle>
-                        </CardContent>
-                      </Card>
-                    </CarouselItem>
-                  ))}
-                </CarouselContent>
-                <CarouselPrevious />
-                <CarouselNext />
-              </Carousel>
-              <div className="py-2 text-center text-sm text-muted-foreground">
-                <span className="font-semibold">
-                  {current} / {count}
-                </span>{" "}
-                projects
-              </div>
+            <div className="mt-14 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+              {projects.map((project) => {
+                const isGoogleDriveProject = project.title === "Key Project Examples";
+                return (
+                  <Link
+                    key={project.title}
+                    href={project.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="group flex min-h-64 flex-col justify-between rounded-md bg-white/5 p-8 shadow-md backdrop-blur transition duration-300 hover:-translate-y-1 hover:bg-white/10 hover:shadow-lg"
+                  >
+                    {isGoogleDriveProject ? (
+                      <HardDrive className="text-primary transition-transform duration-300 group-hover:scale-110" size={24} />
+                    ) : (
+                      <Github className="text-primary transition-transform duration-300 group-hover:scale-110" size={24} />
+                    )}
+                  <div>
+                    <h3 className="text-lg font-medium tracking-tight text-foreground">
+                      {project.title}
+                    </h3>
+                    <p className="mt-2 tracking-tight text-muted-foreground">
+                      {project.description}
+                    </p>
+                    <span className="mt-6 inline-block text-sm text-primary">
+                      {isGoogleDriveProject ? "ดูบน Google Drive ↗" : "ดูบน GitHub ↗"}
+                    </span>
+                  </div>
+                  </Link>
+                );
+              })}
             </div>
-          </div>
-        </section>
 
-        {/* Services */}
-        <section id="services" data-scroll-section>
-          <div
-            data-scroll
-            data-scroll-speed=".4"
-            data-scroll-position="top"
-            className="my-24 flex flex-col justify-start space-y-10"
-          >
-            <motion.div
-              initial={{ opacity: 0, y: -10 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{
-                duration: 1,
-                staggerChildren: 0.5,
-              }}
-              viewport={{ once: true }}
-              className="grid items-center gap-1.5 md:grid-cols-2 xl:grid-cols-3"
-            >
-              <div className="flex flex-col py-6 xl:p-6">
-                <h2 className="text-4xl font-medium tracking-tight">
-                  Need more info?
-                  <br />
-                  <span className="text-gradient clash-grotesk tracking-normal">
-                    I got you.
-                  </span>
-                </h2>
-                <p className="mt-2 tracking-tighter text-secondary-foreground">
-                  Here are some of the services I offer. If you have any
-                  questions, feel free to reach out.
-                </p>
-              </div>
-              {services.map((service) => (
-                <div
-                  key={service.service}
-                  className="flex flex-col items-start rounded-md bg-white/5 p-14 shadow-md backdrop-blur transition duration-300 hover:-translate-y-0.5 hover:bg-white/10 hover:shadow-md"
-                >
-                  <service.icon className="my-6 text-primary" size={20} />
-                  <span className="text-lg tracking-tight text-foreground">
-                    {service.service}
-                  </span>
-                  <span className="mt-2 tracking-tighter text-muted-foreground">
-                    {service.description}
-                  </span>
-                </div>
-              ))}
-            </motion.div>
           </div>
         </section>
 
         {/* Contact */}
-        <section id="contact" data-scroll-section className="my-64">
+        <section id="contact" data-scroll-section className="-mt-32 mb-32">
           <div
             data-scroll
             data-scroll-speed=".4"
             data-scroll-position="top"
-            className="flex flex-col items-center justify-center rounded-lg bg-gradient-to-br from-primary/[6.5%] to-white/5 px-8 py-16 text-center xl:py-24"
+            className="mx-auto flex max-w-5xl flex-col items-center text-center"
           >
-            <h2 className="text-4xl font-medium tracking-tighter xl:text-6xl">
-              Let&apos;s work{" "}
-              <span className="text-gradient clash-grotesk">together.</span>
+            <span className="clash-grotesk text-sm font-semibold tracking-[0.2em] text-primary">
+              // CONTACT
+            </span>
+            <h2 className="mt-5 text-5xl font-semibold tracking-tight text-foreground sm:text-6xl xl:text-7xl">
+              Get In <span className="text-gradient">Touch</span>
             </h2>
-            <p className="mt-1.5 text-base tracking-tight text-muted-foreground xl:text-lg">
-              I&apos;m currently available for freelance work and open to
-              discussing new projects.
+            <div className="mt-5 h-0.5 w-12 bg-primary" />
+            <p className="mt-8 max-w-2xl text-base leading-relaxed text-muted-foreground xl:text-lg">
+              I&apos;m currently open to opportunities and collaborative projects.
+              Feel free to reach out anytime!
             </p>
-            <Link href="mailto:wendoj@proton.me" passHref>
-              <Button className="mt-6">Get in touch</Button>
-            </Link>
+            <div className="mt-12 grid w-full gap-4 md:grid-cols-2">
+              <Link
+                href={`mailto:${personal.email}`}
+                className="group flex items-center justify-between rounded-xl border border-primary/30 bg-primary/[8%] p-5 text-left transition duration-300 hover:-translate-y-1 hover:bg-primary/[14%]"
+              >
+                <span className="flex items-center gap-4">
+                  <span className="flex h-12 w-12 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-primary">
+                    <Mail size={22} />
+                  </span>
+                  <span>
+                    <span className="block text-xs uppercase tracking-[0.2em] text-muted-foreground">
+                      Email
+                    </span>
+                    <span className="mt-1 block font-medium text-foreground">
+                      {personal.email}
+                    </span>
+                  </span>
+                </span>
+                <ArrowUpRight className="text-muted-foreground transition-transform group-hover:-translate-y-1 group-hover:translate-x-1" size={20} />
+              </Link>
+              <Link
+                href={personal.githubUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="group flex items-center justify-between rounded-xl border border-white/10 bg-white/[4%] p-5 text-left transition duration-300 hover:-translate-y-1 hover:bg-white/[8%]"
+              >
+                <span className="flex items-center gap-4">
+                  <span className="flex h-12 w-12 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-primary">
+                    <Github size={22} />
+                  </span>
+                  <span>
+                    <span className="block text-xs uppercase tracking-[0.2em] text-muted-foreground">
+                      GitHub
+                    </span>
+                    <span className="mt-1 block font-medium text-foreground">
+                      github.com/{personal.githubUsername}
+                    </span>
+                  </span>
+                </span>
+                <ArrowUpRight className="text-muted-foreground transition-transform group-hover:-translate-y-1 group-hover:translate-x-1" size={20} />
+              </Link>
+              <Link
+                href="https://www.facebook.com/kullapatthanonjaroenwut"
+                target="_blank"
+                rel="noreferrer"
+                className="group flex items-center justify-between rounded-xl border border-white/10 bg-white/[4%] p-5 text-left transition duration-300 hover:-translate-y-1 hover:bg-white/[8%]"
+              >
+                <span className="flex items-center gap-4">
+                  <span className="flex h-12 w-12 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-xl font-semibold text-primary">
+                    f
+                  </span>
+                  <span>
+                    <span className="block text-xs uppercase tracking-[0.2em] text-muted-foreground">
+                      Facebook
+                    </span>
+                    <span className="mt-1 block font-medium text-foreground">
+                      kullapatthanonjaroenwut
+                    </span>
+                  </span>
+                </span>
+                <ArrowUpRight className="text-muted-foreground transition-transform group-hover:-translate-y-1 group-hover:translate-x-1" size={20} />
+              </Link>
+              <Link
+                href="https://www.instagram.com/k_spy4/"
+                target="_blank"
+                rel="noreferrer"
+                className="group flex items-center justify-between rounded-xl border border-fuchsia-500/30 bg-fuchsia-500/[8%] p-5 text-left transition duration-300 hover:-translate-y-1 hover:bg-fuchsia-500/[14%]"
+              >
+                <span className="flex items-center gap-4">
+                  <span className="flex h-12 w-12 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-primary">
+                    <Instagram size={22} />
+                  </span>
+                  <span>
+                    <span className="block text-xs uppercase tracking-[0.2em] text-muted-foreground">
+                      Instagram
+                    </span>
+                    <span className="mt-1 block font-medium text-foreground">
+                      @k_spy4
+                    </span>
+                  </span>
+                </span>
+                <ArrowUpRight className="text-muted-foreground transition-transform group-hover:-translate-y-1 group-hover:translate-x-1" size={20} />
+              </Link>
+            </div>
+            <Button asChild className="mt-8 gap-2">
+              <a href="/assets/CV.pdf" target="_blank" rel="noreferrer">
+                <ExternalLink size={18} />
+                Open CV
+              </a>
+            </Button>
           </div>
         </section>
+
       </div>
     </Container>
   );
