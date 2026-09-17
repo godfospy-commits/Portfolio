@@ -134,7 +134,7 @@ export default function Home() {
         <section
           id="home"
           data-scroll-section
-          className="mt-40 flex w-full flex-col items-center xl:mt-0 xl:min-h-screen xl:flex-row xl:justify-between"
+          className="mt-24 flex w-full min-w-0 flex-col items-center px-1 sm:mt-32 xl:mt-0 xl:min-h-screen xl:flex-row xl:justify-between"
         >
           <div className={styles.intro}>
             <div>
@@ -144,11 +144,11 @@ export default function Home() {
                 data-scroll-speed=".06"
                 data-scroll-direction="horizontal"
               >
-                <span className="text-6xl tracking-tighter text-foreground 2xl:text-8xl">
+                <span className="text-4xl tracking-tighter text-foreground sm:text-6xl 2xl:text-8xl">
                   {personal.greeting}
                   <br />
                 </span>
-                <span className="clash-grotesk text-gradient text-6xl 2xl:text-8xl">
+                <span className="clash-grotesk text-gradient text-4xl sm:text-6xl 2xl:text-8xl">
                   {personal.headline}
                 </span>
               </h1>
@@ -171,7 +171,7 @@ export default function Home() {
               <TriangleDownIcon className="mt-1 animate-bounce" />
             </div>
           </div>
-          <div className="mt-14 w-full max-w-2xl overflow-hidden rounded-2xl border border-primary/30 bg-[#030711]/95 shadow-[0_0_45px_rgba(59,130,246,0.12)] xl:mt-0">
+          <div className="mt-10 w-full min-w-0 max-w-2xl overflow-hidden rounded-2xl border border-primary/30 bg-[#030711]/95 shadow-[0_0_45px_rgba(59,130,246,0.12)] sm:mt-14 xl:mt-0">
             <div className="flex items-center gap-2 border-b border-white/10 px-5 py-4 font-mono text-xs text-slate-500">
               <span className="h-3 w-3 rounded-full bg-red-500" />
               <span className="h-3 w-3 rounded-full bg-yellow-400" />
@@ -271,7 +271,7 @@ export default function Home() {
               />
             </div>
           </div>
-          <div data-scroll data-scroll-speed=".4" className="-mt-56 mb-0">
+          <div data-scroll data-scroll-speed=".4" className="mt-16 mb-0 sm:mt-24 xl:-mt-56">
             <div className="mb-12">
               <span className="text-gradient clash-grotesk text-sm font-semibold tracking-[0.2em]">
                 {"// CERTIFICATES"}
