@@ -213,7 +213,7 @@ export default function Home() {
           >
             <div className="relative overflow-hidden border border-primary/20 bg-background/40 px-6 py-12 sm:px-10 xl:px-16 xl:py-20">
               <span className="clash-grotesk text-sm font-semibold tracking-[0.2em] text-primary">
-                // ABOUT_ME
+                {"// ABOUT_ME"}
               </span>
               <h2 className="mt-5 text-5xl font-semibold tracking-tight text-foreground sm:text-6xl xl:text-8xl">
                 WHO <span className="text-gradient">I AM</span>
@@ -274,7 +274,7 @@ export default function Home() {
           <div data-scroll data-scroll-speed=".4" className="-mt-56 mb-0">
             <div className="mb-12">
               <span className="text-gradient clash-grotesk text-sm font-semibold tracking-[0.2em]">
-                // CERTIFICATES
+                {"// CERTIFICATES"}
               </span>
               <h2 className="mt-5 text-4xl font-semibold tracking-tight xl:text-6xl">
                 Certificates
@@ -357,7 +357,7 @@ export default function Home() {
             </div>
             <div className="mb-24">
               <span className="text-gradient clash-grotesk text-sm font-semibold tracking-[0.2em]">
-                // TECHNICAL_SKILLS
+                {"// TECHNICAL_SKILLS"}
               </span>
               <h2 className="mt-5 text-4xl font-semibold tracking-tight xl:text-6xl">
                 Technical <span className="text-gradient">Skills</span>
@@ -451,7 +451,7 @@ export default function Home() {
             className="mx-auto flex max-w-5xl flex-col items-center text-center"
           >
             <span className="clash-grotesk text-sm font-semibold tracking-[0.2em] text-primary">
-              // CONTACT
+              {"// CONTACT"}
             </span>
             <h2 className="mt-5 text-5xl font-semibold tracking-tight text-foreground sm:text-6xl xl:text-7xl">
               Get In <span className="text-gradient">Touch</span>
