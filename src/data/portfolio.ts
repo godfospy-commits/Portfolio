@@ -104,7 +104,7 @@ export const portfolioData: PortfolioConfig = {
       title: "status_machinery_real-time",
       description:
         "เช็คสถานะเครื่องจักรแบบเรียลไทม์",
-      href: "https://github.com/godfospy-commits/status_machinery_real-time.git",
+      href: "https://github.com/godfospy-commits/machine-status.git",
     },
     {
       title: "more",
