@@ -61,7 +61,7 @@ export const portfolioData: PortfolioConfig = {
   },
   stats: [
     { label: "Technologies mastered", value: "8" },
-    { label: "Projects completed", value: "7" },
+    { label: "Projects completed", value: "9" },
   ],
   projects: [
     {
@@ -95,16 +95,22 @@ export const portfolioData: PortfolioConfig = {
       href: "https://github.com/godfospy-commits/content",
     },
     {
-      title: "more",
-      description:
-        "โปรเจกต์เพิ่มเติม",
-      href: "https://github.com/godfospy-commits?tab=repositories",
-    },
-     {
       title: "Key Project Examples",
       description:
         "ตัวอย่างการทำงาน",
       href: "https://drive.google.com/drive/folders/1uhWYZJx-iAI2WgfJxUuLvqJXPQbkxrKs?usp=sharing",
+    },
+    {
+      title: "status_machinery_real-time",
+      description:
+        "เช็คสถานะเครื่องจักรแบบเรียลไทม์",
+      href: "https://github.com/godfospy-commits/status_machinery_real-time.git",
+    },
+    {
+      title: "more",
+      description:
+        "โปรเจกต์เพิ่มเติม",
+      href: "https://github.com/godfospy-commits?tab=repositories",
     },
   ],
   services: [
