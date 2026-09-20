@@ -254,8 +254,8 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Projects */}
-        <section id="projects" data-scroll-section>
+        {/* Certificates & Skills */}
+        <section id="skills" data-scroll-section>
           {/* Gradient */}
           <div className="relative isolate -z-10">
             <div
@@ -397,6 +397,12 @@ export default function Home() {
                 </div>
               </div>
             </div>
+          </div>
+        </section>
+
+        {/* Projects */}
+        <section id="projects" data-scroll-section className="mt-16 mb-0 sm:mt-24">
+          <div data-scroll data-scroll-speed=".4">
             <span className="text-gradient clash-grotesk text-sm font-semibold tracking-tighter">
               ✨ Projects
             </span>
