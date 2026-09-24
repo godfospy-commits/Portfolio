@@ -107,6 +107,12 @@ export const portfolioData: PortfolioConfig = {
       href: "https://github.com/godfospy-commits/machine-status.git",
     },
     {
+      title: "predictive-maintenance-demo",
+      description:
+        "เช็คสถานะเครื่องจักรแบบเรียลไทม์และคาลการสุขภาพเครื่องจักร ส่งข้อมูลกลับไปที่เครื่องจักร",
+      href: "https://github.com/godfospy-commits/predictive-maintenance-demo.git",
+    },
+    {
       title: "more",
       description:
         "โปรเจกต์เพิ่มเติม",
