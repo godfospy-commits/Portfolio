@@ -61,14 +61,14 @@ export const portfolioData: PortfolioConfig = {
   },
   stats: [
     { label: "Technologies mastered", value: "8" },
-    { label: "Projects completed", value: "9" },
+    { label: "Projects completed", value: "11" },
   ],
   projects: [
     {
-      title: "Object Detection ROBO-DK V2 Image",
+      title: "cobot-markers-OpenCV-Image",
       description:
         "ระบบตรวจจับวัตถุจากภาพสำหรับโปรเจกต์ด้วยการประมวลผลรูปเดียว",
-      href: "https://github.com/godfospy-commits/Object-Detection-ROBO-DK_V2-image",
+      href: "https://github.com/godfospy-commits/cobot-markers-OpenCV-Image.git",
     },
     {
       title: "Object Detection ROBO-DK YOLO",
