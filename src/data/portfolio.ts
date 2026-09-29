@@ -46,7 +46,7 @@ export const portfolioData: PortfolioConfig = {
     tagline:
       "Do everything well, and you won't have any regrets.",
     aboutHeadline:
-      "ผมนายกุลพัทธนนท์ เจริญวุฒิ นักศึกษาปี 4 สาขาวิชาวิศวกรรมคอมพิวเตอร์ คณะวิศวกรรมศาสตร์และเทคโนโลยีอุตสาหกรรมมหาวิทยาลัยราชภัฏพิบูลสงคราม ผมมีความสนใจด้าน Robot & Automation มีทักษะ PLC, Arduino, Python และการออกแบบชิ้นงานด้วย SolidWorks พร้อมก้าวไปข้างหน้ามีความรับผิดชอบต่องานและพัฒนาตนเองไปเรื่อยๆสู่สายงาน Robot & Automation",
+      "นักศึกษาชั้นปีที่ 4 สาขาวิศวกรรมคอมพิวเตอร์ มหาวิทยาลัยราชภัฏพิบูลสงคราม สนใจด้าน Robot & Automation มีทักษะ PLC, Arduino, Python และออกแบบชิ้นงานด้วย SolidWorks มีประสบการณ์ทำโปรเจกต์ที่เชื่อมงานซอฟต์แวร์กับฮาร์ดแวร์ เช่น Computer Vision สำหรับหุ่นยนต์ และระบบ IoT รับข้อมูลเซนเซอร์ผ่าน MQTT พร้อมเรียนรู้และพัฒนาตนเองต่อเนื่อง",
     aboutHighlightLink: {
       text: "TypeScript, Tailwind, and Next.js",
       url: "https://create.t3.gg/",
