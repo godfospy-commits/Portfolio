@@ -355,7 +355,7 @@ export default function Home() {
                 </div>
               </div>
             </div>
-            <div className="mb-24">
+            <div>
               <span className="text-gradient clash-grotesk text-sm font-semibold tracking-[0.2em]">
                 {"// TECHNICAL_SKILLS"}
               </span>
@@ -401,7 +401,7 @@ export default function Home() {
         </section>
 
         {/* Projects */}
-        <section id="projects" data-scroll-section className="mt-16 mb-0 sm:mt-24">
+        <section id="projects" data-scroll-section className="mt-8 mb-0 sm:mt-12 xl:-mt-32">
           <div data-scroll data-scroll-speed=".4">
             <span className="text-gradient clash-grotesk text-sm font-semibold tracking-tighter">
               ✨ Projects
