@@ -53,7 +53,7 @@ export const portfolioData: PortfolioConfig = {
     },
     aboutDescription:
       "I build responsive, high-performance web applications with stunning visual appeal and modern architecture.",
-    email: "kulphattnon738@gmail.com",
+    email: "kulphattnon.c@psru.ac.th",
     githubUsername: "godfospy-commits",
     githubUrl: "https://github.com/godfospy-commits",
     badges: ["next.js", "tailwindcss", "typescript", "react"],
