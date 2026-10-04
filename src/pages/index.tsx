@@ -552,7 +552,7 @@ export default function Home() {
               </Link>
             </div>
             <Button asChild className="mt-8 gap-2">
-              <a href="/assets/CV.pdf" target="_blank" rel="noreferrer">
+              <a href="/assets/cv.pdf" target="_blank" rel="noreferrer">
                 <ExternalLink size={18} />
                 Open CV
               </a>
