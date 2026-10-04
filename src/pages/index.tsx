@@ -9,6 +9,7 @@ import {
   Code2,
   Cpu,
   ExternalLink,
+  FileText,
   Github,
   HardDrive,
   Mail,
@@ -551,6 +552,16 @@ export default function Home() {
                 <ArrowUpRight className="text-muted-foreground transition-transform group-hover:-translate-y-1 group-hover:translate-x-1" size={20} />
               </Link>
             </div>
+            <Link
+              href="/assets/Kulphattnon%20Charoenwut-CV.pdf"
+              target="_blank"
+              rel="noreferrer"
+              className="group mt-6 flex items-center justify-center gap-3 rounded-xl border border-primary/30 bg-primary/[8%] px-6 py-4 text-center transition duration-300 hover:-translate-y-1 hover:bg-primary/[14%]"
+            >
+              <FileText size={20} className="text-primary" />
+              <span className="font-medium text-foreground">Open CV</span>
+              <ArrowUpRight className="text-muted-foreground transition-transform group-hover:-translate-y-1 group-hover:translate-x-1" size={18} />
+            </Link>
 
           </div>
         </section>
