@@ -551,12 +551,7 @@ export default function Home() {
                 <ArrowUpRight className="text-muted-foreground transition-transform group-hover:-translate-y-1 group-hover:translate-x-1" size={20} />
               </Link>
             </div>
-            <Button asChild className="mt-8 gap-2">
-              <a href="/assets/cv.pdf" target="_blank" rel="noreferrer">
-                <ExternalLink size={18} />
-                Open CV
-              </a>
-            </Button>
+
           </div>
         </section>
 
