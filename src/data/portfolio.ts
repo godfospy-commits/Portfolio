@@ -61,7 +61,7 @@ export const portfolioData: PortfolioConfig = {
   },
   stats: [
     { label: "Technologies mastered", value: "8" },
-    { label: "Projects completed", value: "11" },
+    { label: "Projects completed", value: "12" },
   ],
   projects: [
     {
@@ -103,14 +103,20 @@ export const portfolioData: PortfolioConfig = {
     {
       title: "status_machinery_real-time",
       description:
-        "เช็คสถานะเครื่องจักรแบบเรียลไทม์",
+        "เช็คสถานะเครื่องจักรแบบเรียลไทม์(แบบAPIรับข้อมูลอย่างเดียว)",
       href: "https://github.com/godfospy-commits/machine-status.git",
     },
     {
       title: "predictive-maintenance-demo",
       description:
-        "เช็คสถานะเครื่องจักรแบบเรียลไทม์และคาลการสุขภาพเครื่องจักร ส่งข้อมูลกลับไปที่เครื่องจักร",
+        "เช็คสถานะเครื่องจักรแบบเรียลไทม์และคาลการสุขภาพเครื่องจักร ส่งข้อมูลกลับไปที่เครื่องจักร(แบบsimหลายเครือง)",
       href: "https://github.com/godfospy-commits/predictive-maintenance-demo.git",
+    },
+    {
+      title: "MotorGuard-IoT-FanGuard-AI",
+      description:
+        "เช็คสถานะเครื่องจักรแบบเรียลไทม์และคาลการสุขภาพเครื่องจักร ส่งข้อมูลกลับไปที่เครื่องจักร(แบบของจริงมีเครื่อง)",
+      href: "https://github.com/godfospy-commits/MotorGuard-IoT-FanGuard-AI.git",
     },
     {
       title: "more",
